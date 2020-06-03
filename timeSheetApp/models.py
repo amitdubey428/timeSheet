@@ -24,21 +24,29 @@ class Project(models.Model):
     project_id = models.AutoField(primary_key=True)
     project_title = models.CharField(max_length=250)
     description = models.TextField()
-    
-    def __str__(self):
-        return str(self.project_title)
-
-class Task(models.Model):
-    task_id = models.AutoField(primary_key=True)
-    project = models.ForeignKey('Project', on_delete=models.CASCADE)
-    task_title = models.CharField(max_length=250)
-    description = models.TextField()
     STATUS = (
         ('S','Started'),
         ('O','On going'),
         ('C','Completed'),
     )
-    task_status = models.CharField(max_length=1, choices=STATUS)
+    project_status = models.CharField(max_length=1, choices=STATUS, null=False)
+    
+    def __str__(self):
+        return str(self.project_title)
+
+class Timesheet(models.Model):
+    task_id = models.AutoField(primary_key=True)
+    project = models.ForeignKey('Project', on_delete=models.CASCADE)
+    task_title = models.CharField(max_length=250)
+    task_description = models.TextField(null=True)
+    PRIORITY_STATUS = (
+        ('H','High'),
+        ('M','Medium'),
+        ('L','Low'),
+    )
+    priority = models.CharField(max_length=1, choices=PRIORITY_STATUS)
+    starting_time = models.DateTimeField(auto_now_add=False)
+    ending_time = models.DateTimeField(auto_now_add=False)
 
     def __str__(self):
         return str(self.task_title)
