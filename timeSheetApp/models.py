@@ -34,9 +34,12 @@ class Project(models.Model):
     def __str__(self):
         return str(self.project_title)
 
-class Assigned_Project_Member(models.Model):
-    user =   models.ForeignKey('User', on_delete=models.CASCADE)
+class Add_Member(models.Model):
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
+    user =   models.ForeignKey('User', models.SET_NULL, blank=True, null=True,)
+
+    def __str__(self):
+        return str(self.project)+ ' - ' +str(self.user)
 
 class Timesheet(models.Model):
     task_id = models.AutoField(primary_key=True)
