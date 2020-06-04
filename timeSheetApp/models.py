@@ -6,7 +6,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     email_id = models.EmailField(unique=True)
-    # password = models.Char        integrate it in form
+    password = models.CharField(max_length=100)
     phone_no = models.CharField(max_length=12)
     RESPONSIBILITY = (
         ('PM','Project Manager'),
@@ -18,7 +18,19 @@ class User(models.Model):
     working_hours_end = models.TimeField()
 
     def __str__(self):
-        return str(self.first_name)
+        return str(self.first_name)+" "+str(self.last_name)
+
+class AdminRole(models.Model):
+    admin_id = models.AutoField(primary_key=True)
+    first_name = models.CharField(max_length=250)
+    last_name = models.CharField(max_length=250)
+    email_id = models.EmailField(unique=True)
+    password = models.CharField(max_length=100)
+    phone_no = models.CharField(max_length=12)
+    
+    def __str__(self):
+        return str(self.first_name,self.last_name)
+
 
 class Project(models.Model):
     project_id = models.AutoField(primary_key=True)
