@@ -34,6 +34,7 @@ class Project(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     project_id = models.AutoField(primary_key=True)
     project_title = models.CharField(max_length=250)
+    user= models.ForeignKey('User', on_delete=models.CASCADE)
     description = models.TextField()
     STATUS = (
         ('S','Started'),
@@ -45,7 +46,10 @@ class Project(models.Model):
     def __str__(self):
         return str(self.project_title)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5dada286eb935671bb9887faf57a6bb50a29f11a
 class Timesheet(models.Model):
     task_id = models.AutoField(primary_key=True)
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
