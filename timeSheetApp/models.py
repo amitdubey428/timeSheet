@@ -46,10 +46,6 @@ class Project(models.Model):
     def __str__(self):
         return str(self.project_title)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5dada286eb935671bb9887faf57a6bb50a29f11a
 class Timesheet(models.Model):
     task_id = models.AutoField(primary_key=True)
     project = models.ForeignKey('Project', on_delete=models.CASCADE)
