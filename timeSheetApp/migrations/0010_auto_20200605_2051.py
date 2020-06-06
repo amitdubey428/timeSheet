@@ -31,7 +31,5 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='timeSheetApp.User'),
             preserve_default=False,
         ),
-        migrations.DeleteModel(
-            name='Add_Member',
-        ),
+       
     ]
