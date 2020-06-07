@@ -18,7 +18,17 @@
 
 <head>
     {% load static %}
+    {{ form.media }}
+    {% load mathfilters %}
+    <script type="text/javascript" src="/jsi18n/"></script>
+    <script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/calendar.js' %}"></script> 
+    <script type="text/javascript" src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
 
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}"/>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'timeSheetApp/assets/img/apple-icon.png' %}">
     <link rel="icon" type="image/png" href="{% static 'timeSheetApp/assets/img/favicon.ico' %}">
@@ -108,36 +118,29 @@
                                         {% csrf_token %}
                                         
                                         <div class="form-group row justify-content-around">
-                                            <label for="project" class="col-lg-2 col-form-label">Project</label>
-                                            <!-- <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Select Project
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">                                    
-                                                    {% for projects in projectNames %}
-                                                        <a class="dropdown-item" >{{projects.project_title}}</a>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>         -->
+                                            <label for="project" class="col-lg-2 col-form-label">Project</label>                                            
                                             {{form.project}}
                                                                              
-                                            <label for="user" class="col-lg-2 col-form-label ">Employee Name</label>
+                                            <label for="user" class="col-lg-2 col-form-label">Employee Name</label>
                                             {{form.user}}  
                                         </div>       
+                                    <hr>
                                         <div class="form-group row justify-content-around">
                                             <label for="task_title" class="col-lg-2 col-form-label">Task Title</label>
                                             {{form.task_title}}
-                                            <label for="task_description" class="col-lg-2 col-form-label ">Description</label>
+                                            <label for="task_description" class="col-lg-2 col-form-label">Description</label>
                                             {{form.task_description}}        
                                         </div>
+                                     <hr>
                                         <div class="form-group row justify-content-around">
                                             <label for="priority" class="col-lg-1 col-form-label">Priority</label>
                                             {{form.priority}}
-                                            <label for="start_time" class="col-lg-1 col-form-label">Start Time</label>
+                                            <label for="starting_time" class="col-lg-1 col-form-label">Start Time</label>
                                             {{form.starting_time}}
-                                            <label for="end_time" class="col-lg-1 col-form-label">End Time</label>
+                                            <label for="ending_time" class="col-lg-1 col-form-label">End Time</label>
                                             {{form.ending_time}}        
                                         </div>
+                                        <hr>
                                         <div class="form-group row justify-content-around">
                                             <div class="offset-md-2">                                            
                                                 <button type="submit" class="btn btn-primary">
@@ -145,10 +148,99 @@
                                                 </button>
                                             </div> 
                                         </div>
-                                        <input type="submit" value="Submit">
                                     </form>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {% if timeSheetData %}
+                                {% for sheet in timeSheetData %}
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                Time Sheet Record
+                                            </h5>                                                                    
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    Employee Name :
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{sheet.user}}
+                                                </div>
+                                                <div class="col-md-3">
+                                                    Project :
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{sheet.project}}
+                                                </div>
+                                            </div> 
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    Task Title :
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{sheet.task_title}}
+                                                </div>
+                                                <div class="col-md-3">
+                                                    Task Description :
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{sheet.task_description}}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    Priority :
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {% if sheet.priority == "H" %}
+                                                        High
+                                                    {% elif sheet.priority == "L" %}
+                                                        Low
+                                                    {% elif sheet.priority == "M" %}
+                                                        Medium
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-md-3">
+                                                    Duration of Task :
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{ sheet.ending_time|sub:sheet.starting_time }}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    Task Started on :
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{sheet.starting_time}}
+                                                </div>
+                                                <div class="col-md-3">
+                                                    Task Ended on :
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{sheet.ending_time}}
+                                                </div>
+                                            </div>                                         
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            No Time Sheet to display
+                                        </h5>                                                                    
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -161,7 +253,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            ByteMorphers</a>, made with love for a better web
+                            ByteMorphers</a>
                         </p>
                     </nav>
                 </div>
