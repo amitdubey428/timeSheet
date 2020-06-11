@@ -16,7 +16,7 @@ cymem==2.0.3
 Cython==0.29.13
 deprecation==2.1.0
 distro==1.5.0
-Django==2.2
+Django==2.2.13
 django-mathfilters==1.0.0
 gast==0.2.2
 h5py==2.10.0
