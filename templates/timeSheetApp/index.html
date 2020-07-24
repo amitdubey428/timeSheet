@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BeatClock - Home</title>
+  {% load static %}
+  <link rel="icon" href="{% static 'timeSheetApp/images/Fevicon.png' %}" type="image/png">
+
+  <link rel="stylesheet" href="{% static 'timeSheetApp/vendors/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'timeSheetApp/vendors/fontawesome/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'timeSheetApp/vendors/themify-icons/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'timeSheetApp/vendors/linericon/style.css' %}">
+  <link rel="stylesheet" href="{% static 'timeSheetApp/vendors/owl-carousel/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'timeSheetApp/vendors/owl-carousel/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'timeSheetApp/css/style.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'timeSheetApp/images/icons/favicon.ico' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'timeSheetApp/vendors/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'timeSheetApp/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'timeSheetApp/vendors/animate/animate.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'timeSheetApp/vendors/css-hamburgers/hamburgers.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'timeSheetApp/vendors/select2/select2.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'timeSheetApp/css/util.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'timeSheetApp/css/main.css' %}">
+</head>
+<body>
+<!--Modal: Login / Register Form-->
+<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs lg-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fas fa-user mr-1"></i>
+              Employee Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fas fa-user-plus mr-1"></i>
+              Admin Login</a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <!--Panel 7-->
+          <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+            <!--Body-->
+            <div class="modal-body mb-1">
+              <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+      <p class="login100-form-title">Employee Login</p>
+        <div class="login100-pic js-tilt" data-tilt>
+          
+          <img src="{% static 'timeSheetApp/images/img-01.png' %}" alt="IMG">
+        </div>
+
+        <form action="/loginEmp/" method="POST">
+            {% csrf_token %}
+        
+            <div class="container row loginName">
+
+              <span class="login100-form-title">
+            
+              </span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+              <input class="input100" type="text" name="username" placeholder="Username">
+              <span class="focus-input100"></span>
+              <span class="symbol-input100">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </span>
+            </div>
+
+            <div class="wrap-input100 validate-input" data-validate = "Password is required">
+              <input class="input100" type="password" name="password" placeholder="Password">
+              <span class="focus-input100"></span>
+              <span class="symbol-input100">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+              </span>
+            </div>
+          
+            <div class="container-login100-form-btn">
+              <button class="login100-form-btn" type="submit">
+                Login
+              </button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+            </div>
+            <!--Footer-->
+
+          </div>
+          <!--/.Panel 7-->
+
+          <!--Panel 8-->
+          <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100" style="padding: 177px 112px 33px 112px;">
+      <p class="login100-form-title">Admin Login</p>
+        <div class="login100-pic js-tilt" data-tilt>
+          
+          <img src="{% static 'timeSheetApp/images/img-01.png' %}" alt="IMG"'>
+        </div>
+        <form action="/loginAdmin/" method="POST">
+          {% csrf_token %}>
+          <span class="login100-form-title">
+            
+          </span>
+
+          <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+            <input class="input100" type="text" name="username" placeholder="Username">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate = "Password is required">
+            <input class="input100" type="password" name="password" placeholder="Password">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+          </div>
+          
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" type="submit">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+            </div>
+            <!--Footer-->
+           
+          </div>
+          <!--/.Panel 8-->
+        </div>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Login / Register Form-->
+
+<!--Modal: modalPush-->
+  <!--================Header Menu Area =================-->
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container box_1620">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <!-- <a class="navbar-brand logo_h" href=#><img src="{% static 'timeSheetApp/images/logo.png' %}" alt=""></a> -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav justify-content-end">
+              <li class="nav-item focus"><a class="nav-link" href=#>Home</a></li> 
+              <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+            </ul>
+          </div> 
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!--================Header Menu Area =================-->
+
+
+  <main class="side-main">
+    <!--================ Hero sm Banner start =================-->      
+    <section class="hero-banner mb-30px">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="hero-banner__img">
+              <img class="img-fluid" src="{% static 'timeSheetApp/images/banner/hero-banner.jpg' %}" alt="">
+            </div>
+          </div>
+          <div class="col-lg-5 pt-5">
+            <div class="hero-banner__content">
+              <h1>Advanced software made simple</h1>
+              <p>Get more done faster, with task collaboration, discussions, file sharing,activity feeds and more !! <br>:)</p>
+              <a href="" class="button btn-bg" data-toggle="modal" data-target="#modalLRForm">LOGIN</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================ Hero sm Banner end =================-->
+
+    <!--================ Feature section start =================-->      
+    <section class="section-margin">
+      <div class="container">
+        <div class="section-intro pb-85px text-center">
+          <h2 class="section-intro__title">Awesome Soft Feature</h2>
+          <p class="section-intro__subtitle">Beautiful all-in-one software to run your business
+Stop juggling multiple apps, subscriptions & spreadsheets. TimeSheets is the seamless, productive platform teams use to collaborate on projects, schedule resources, track time, manage expenses & invoice customers.</p>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card card-feature text-center text-lg-left mb-4 mb-lg-0">
+                <span class="card-feature__icon">
+                  <i class="ti-package"></i>
+                </span>
+                <h3 class="card-feature__title">Easy Project Management</h3>
+                <p class="card-feature__subtitle">Collaborate on projects & tasks with your team and clients. Enjoy powerful collaboration with email discussions, notifications and activity feeds.</p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card card-feature text-center text-lg-left mb-4 mb-lg-0">
+                <span class="card-feature__icon">
+                  <i class="ti-mouse-alt"></i>
+                </span>
+                <h3 class="card-feature__title">Easy Resource Sharing</h3>
+                <p class="card-feature__subtitle">Gain a bird’s-eye view on who’s working on any project, and when. Confidently manage team time utilization, and make more intelligent work assignments and scheduling decisions.</p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="card card-feature text-center text-lg-left mb-4 mb-lg-0">
+                <span class="card-feature__icon">
+                  <i class="ti-time"></i>
+                </span>
+                <h3 class="card-feature__title">Easy Time Tracking</h3>
+                <p class="card-feature__subtitle">Timesheets is a new, easy to use online time tracking solution. Invite anyone to enter time, set flexible per project, per user rates and enjoy easy billing and reporting.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================ Feature section end =================-->      
+   
+  </main>
+
+
+  <!-- ================ start footer Area ================= -->
+  <footer class="footer-area section-gap">
+    <div class="container">
+      <p style="align:'center'; font-size:18px; color:white" ; >Don't Worry!   Your Data is safe with us!  :) </p>
+      <div class="footer-bottom row align-items-center text-center text-lg-left">
+        <p class="footer-text m-0 col-lg-8 col-md-12"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved   |   Made with ❤️ in India !
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-dribbble"></i></a>
+          <a href="#"><i class="fab fa-behance"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ================ End footer Area ================= -->
+
+  <script src="{% static 'timeSheetApp/vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'timeSheetApp/vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'timeSheetApp/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'timeSheetApp/js/jquery.ajaxchimp.min.js' %}"></script>
+  <script src="{% static 'timeSheetApp/js/mail-script.js' %}"></script>
+  <script src="{% static 'timeSheetApp/js/main.js' %}"></script>
+  <script src="{% static 'timeSheetApp/vendors/bootstrap/js/popper.js' %}"></script>
+  <script src="{% static 'timeSheetApp/vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'timeSheetApp/vendors/select2/select2.min.js' %}"></script>
+  <script src="{% static 'timeSheetApp/vendors/tilt/tilt.jquery.min.js' %}"></script>
+  <script src="{% static 'timeSheetApp/js/mainlog.js' %}"></script>
+  <script >
+    $('.js-tilt').tilt({
+      scale: 1.1
+    })
+  </script>
+  
+
+</body>
+</html>
